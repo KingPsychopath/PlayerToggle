@@ -1,0 +1,9 @@
+name: PlayerToggle
+version: 0.1
+author: rfsantos1996
+main: com.jabyftw.pt.PlayerToggle
+description: Hide/Show players
+permissions:
+   pt.toggle:
+     description: Allow you to toggle player seing.
+     default: true
