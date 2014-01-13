@@ -26,8 +26,8 @@ public class PlayerToggle extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         FileConfiguration config = getConfig();
-        config.addDefault("config.toggleMaterialEnabled", "ink_sack;10");
-        config.addDefault("config.toggleMaterialDisabled", "ink_sack;8");
+        config.addDefault("config.toggleMaterialEnabled", "ink_sack;10;&eHiding players...");
+        config.addDefault("config.toggleMaterialDisabled", "ink_sack;8;&4Showing players...");
         config.addDefault("config.giveOnJoin", true);
         config.options().copyDefaults(true);
         saveConfig();
@@ -76,6 +76,7 @@ public class PlayerToggle extends JavaPlugin implements Listener {
             }
             players.add(p);
             is.setType(matE.getType());
+            is.getItemMeta().setDisplayName(matE.getItemMeta().getDisplayName());
             is.setDurability(matE.getDurability());
         } else {
             for (Player online : getServer().getOnlinePlayers()) {
@@ -85,12 +86,15 @@ public class PlayerToggle extends JavaPlugin implements Listener {
             }
             players.remove(p);
             is.setType(matD.getType());
+            is.getItemMeta().setDisplayName(matD.getItemMeta().getDisplayName());
             is.setDurability(matD.getDurability());
         }
     }
 
     private ItemStack getItemStack(String string) {
         String[] s = string.split(";");
-        return new ItemStack(Material.valueOf(s[0].toUpperCase()), 1, Short.valueOf(s[1]));
+        ItemStack is = new ItemStack(Material.valueOf(s[0].toUpperCase()), 1, Short.valueOf(s[1]));
+        is.getItemMeta().setDisplayName(s[2]);
+        return is;
     }
 }
