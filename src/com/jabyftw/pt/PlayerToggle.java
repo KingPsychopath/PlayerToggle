@@ -70,7 +70,7 @@ public class PlayerToggle extends JavaPlugin implements Listener {
     private void togglePlayerView(Player p, ItemStack is) {
         if (!players.contains(p)) {
             for (Player online : getServer().getOnlinePlayers()) {
-                if (p.canSee(online)) {
+                if (p.canSee(online) && !online.hasPermission("pt.exception")) {
                     p.hidePlayer(online);
                 }
             }
