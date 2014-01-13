@@ -58,7 +58,7 @@ public class PlayerToggle extends JavaPlugin implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         Player online = e.getPlayer();
         for (Player p : players) {
-            if (p.canSee(online)) {
+            if (p.canSee(online) && !online.hasPermission("pt.exception")) {
                 p.hidePlayer(online);
             }
         }
