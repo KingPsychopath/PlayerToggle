@@ -94,7 +94,7 @@ public class PlayerToggle extends JavaPlugin implements Listener {
     private ItemStack getItemStack(String string) {
         String[] s = string.split(";");
         ItemStack is = new ItemStack(Material.valueOf(s[0].toUpperCase()), 1, Short.valueOf(s[1]));
-        is.getItemMeta().setDisplayName(s[2]);
+        is.getItemMeta().setDisplayName(s[2].replaceAll("&", "§"));
         return is;
     }
 }
