@@ -11,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -76,7 +77,7 @@ public class PlayerToggle extends JavaPlugin implements Listener {
             }
             players.add(p);
             is.setType(matE.getType());
-            is.getItemMeta().setDisplayName(matE.getItemMeta().getDisplayName());
+            is.setItemMeta(matE.getItemMeta());
             is.setDurability(matE.getDurability());
         } else {
             for (Player online : getServer().getOnlinePlayers()) {
@@ -86,7 +87,7 @@ public class PlayerToggle extends JavaPlugin implements Listener {
             }
             players.remove(p);
             is.setType(matD.getType());
-            is.getItemMeta().setDisplayName(matD.getItemMeta().getDisplayName());
+            is.setItemMeta(matD.getItemMeta());
             is.setDurability(matD.getDurability());
         }
     }
@@ -94,7 +95,9 @@ public class PlayerToggle extends JavaPlugin implements Listener {
     private ItemStack getItemStack(String string) {
         String[] s = string.split(";");
         ItemStack is = new ItemStack(Material.valueOf(s[0].toUpperCase()), 1, Short.valueOf(s[1]));
-        is.getItemMeta().setDisplayName(s[2].replaceAll("&", "§"));
+        ItemMeta im = is.getItemMeta();
+        im.setDisplayName(s[2].replaceAll("&", "§"));
+        is.setItemMeta(im);
         return is;
     }
 }
