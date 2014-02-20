@@ -1,5 +1,5 @@
 name: PlayerToggle
-version: 0.3
+version: 0.4
 author: rfsantos1996
 main: com.jabyftw.pt.PlayerToggle
 description: Hide/Show players
